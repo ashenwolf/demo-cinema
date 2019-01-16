@@ -1,4 +1,15 @@
-body {
-  padding: 10px;
-  font-family: sans-serif;
+* {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+#login-buttons a {
+  text-decoration: none;
+}
+
+#login-dropdown-list {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  left: auto;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }

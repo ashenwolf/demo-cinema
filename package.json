@@ -9,7 +9,14 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.5",
-    "meteor-node-stubs": "^0.4.1"
+    "@material-ui/core": "^3.9.0",
+    "bcrypt": "^3.0.3",
+    "classnames": "^2.2.6",
+    "meteor-node-stubs": "^0.4.1",
+    "moment": "^2.23.0",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "recompose": "^0.30.0"
   },
   "meteor": {
     "mainModule": {
@@ -17,5 +24,15 @@
       "server": "server/main.js"
     },
     "testModule": "tests/main.js"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.12.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.12.3",
+    "eslint-plugin-standard": "^4.0.0"
   }
 }
