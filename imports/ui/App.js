@@ -115,6 +115,7 @@ class App extends Component {
   }
 
   resetDb() {
+    this.setState({ selectedScheduleId: null });
     Meteor.call("movies.reset");
   }
 
@@ -229,38 +230,42 @@ class App extends Component {
               </Grid>
               <Grid item xs={12} md={4}>
                 {this.renderSchedule()}
-                <hr />
-                <form
-                  className={classes.container}
-                  noValidate
-                  onSubmit={this.addShowTime.bind(this)}
-                >
-                  <TextField
-                    id="time"
-                    label="Add New Show Time"
-                    type="time"
-                    value={
-                      this.state.showTime.format("HH:mm") //defaultValue="0:30"
-                    }
-                    onChange={this.changeShowTime.bind(this)}
-                    className={classes.textField}
-                    InputLabelProps={{ shrink: true }}
-                    inputProps={
-                      { step: 300 } // 5 min
-                    }
-                  />
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="primary"
-                    disabled={this.state.showTime.isBefore(
-                      this.state.currentTime
-                    )}
-                    className={classNames(classes.button, classes.block)}
-                  >
-                    Add Show Time
-                  </Button>
-                </form>
+                {(() =>
+                  Meteor.userId() ? (
+                    <form
+                      className={classes.container}
+                      noValidate
+                      onSubmit={this.addShowTime.bind(this)}
+                    >
+                      <TextField
+                        id="time"
+                        label="Add New Show Time"
+                        type="time"
+                        value={
+                          this.state.showTime.format("HH:mm") //defaultValue="0:30"
+                        }
+                        onChange={this.changeShowTime.bind(this)}
+                        className={classes.textField}
+                        InputLabelProps={{ shrink: true }}
+                        inputProps={
+                          { step: 300 } // 5 min
+                        }
+                      />
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        disabled={this.state.showTime.isBefore(
+                          this.state.currentTime
+                        )}
+                        className={classNames(classes.button, classes.block)}
+                      >
+                        Add Show Time
+                      </Button>
+                    </form>
+                  ) : (
+                    ""
+                  ))()}
               </Grid>
               <Grid item xs={12} md={8}>
                 {(() => {
