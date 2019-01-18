@@ -155,7 +155,7 @@ export default compose(
     Meteor.subscribe("movie-sessions", props.movie ? props.movie._id : null);
 
     return {
-      sessions: MovieSessions.find().fetch()
+      sessions: MovieSessions.find({}, { sort: { showTime: 1 } }).fetch()
     };
   })
 )(App);
