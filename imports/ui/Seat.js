@@ -43,16 +43,14 @@ class Seat extends Component {
       this.props.reservation.userId === Meteor.userId()
     ) {
       Meteor.call(
-        "movies.unbook",
-        this.props.movieId,
+        "sessions.unbook",
         this.props.showId,
         this.props.row,
         this.props.col
       );
     } else if (!this.props.reservation) {
       Meteor.call(
-        "movies.book",
-        this.props.movieId,
+        "sessions.book",
         this.props.showId,
         this.props.row,
         this.props.col

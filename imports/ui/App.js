@@ -22,6 +22,7 @@ import Sessions from "./Sessions.js";
 import Show from "./Show.js";
 
 import { Movies } from "../api/movies.js";
+import { MovieSessions } from "../api/sessions.js";
 
 import styles from "../config/styles.js";
 
@@ -31,7 +32,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      selectedScheduleId: null,
+      selectedSessionId: null,
       currentTime: Date.now()
     };
   }
@@ -46,32 +47,26 @@ class App extends Component {
     clearInterval(this.intervalId);
   }
 
-  activeMovie() {
-    return this.props.movie;
+  getActiveMovieId() {
+    return this.props.movie ? this.props.movie._id : null;
   }
 
-  activeSchedule() {
-    const movie = this.activeMovie();
-    return movie ? movie.schedule : null;
-  }
-
-  activeShow() {
-    const movie = this.activeMovie();
-    return movie && this.state.selectedScheduleId
-      ? movie.schedule.find(el =>
-        EJSON.equals(el._id, this.state.selectedScheduleId)
+  activeSession() {
+    return this.state.selectedSessionId
+      ? this.props.sessions.find(el =>
+        EJSON.equals(el._id, this.state.selectedSessionId)
       )
       : null;
   }
 
   resetDb() {
-    this.setState({ selectedScheduleId: null });
-    Meteor.call("movies.reset");
+    this.setState({ selectedSessionId: null });
+    Meteor.call("sessions.reset");
   }
 
-  toggleSelectedScheduleId(id) {
+  toggleSelectedSessionId(id) {
     this.setState({
-      selectedScheduleId: id === this.state.selectedScheduleId ? null : id
+      selectedSessionId: id === this.state.selectedSessionId ? null : id
     });
   }
 
@@ -104,17 +99,17 @@ class App extends Component {
               <Grid item xs={12} md={4}>
                 <Sessions
                   currentTime={this.state.currentTime}
-                  movieId={this.props.movie ? this.props.movie._id : null}
-                  selectedScheduleId={this.state.selectedScheduleId}
-                  schedule={this.activeSchedule()}
-                  onShowSelected={this.toggleSelectedScheduleId.bind(this)}
+                  movieId={this.getActiveMovieId()}
+                  selectedSessionId={this.state.selectedSessionId}
+                  schedule={this.props.sessions}
+                  onShowSelected={this.toggleSelectedSessionId.bind(this)}
                 />
               </Grid>
               <Grid item xs={12} md={8}>
                 <Show
                   currentTime={this.state.currentTime}
-                  movieId={this.props.movie ? this.props.movie._id : null}
-                  show={this.activeShow()}
+                  movieId={this.getActiveMovieId()}
+                  show={this.activeSession()}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -143,17 +138,24 @@ class App extends Component {
 
 App.propTypes = {
   classes: PropTypes.object.isRequired,
-  movie: PropTypes.object
+  movie: PropTypes.object,
+  sessions: PropTypes.array
 };
 
 export default compose(
   withStyles(styles),
   withTracker(() => {
     Meteor.subscribe("movies");
-
     return {
       movie: Movies.findOne({}),
       currentUser: Meteor.user()
+    };
+  }),
+  withTracker(props => {
+    Meteor.subscribe("movie-sessions", props.movie ? props.movie._id : null);
+
+    return {
+      sessions: MovieSessions.find().fetch()
     };
   })
 )(App);

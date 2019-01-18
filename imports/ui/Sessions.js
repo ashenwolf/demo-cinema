@@ -30,7 +30,7 @@ class Sessions extends Component {
     event.preventDefault();
 
     Meteor.call(
-      "movies.addShow",
+      "sessions.add",
       this.props.movieId,
       this.state.showTime.toDate()
     );
@@ -48,7 +48,7 @@ class Sessions extends Component {
             <Button
               key={tm._id}
               variant={
-                EJSON.equals(tm._id, this.props.selectedScheduleId) &&
+                EJSON.equals(tm._id, this.props.selectedSessionId) &&
                   tm.showTime > this.props.currentTime
                   ? "contained"
                   : "outlined"
@@ -117,7 +117,7 @@ Sessions.propTypes = {
 
   schedule: PropTypes.array,
   movieId: PropTypes.object,
-  selectedScheduleId: PropTypes.object,
+  selectedSessionId: PropTypes.object,
   currentTime: PropTypes.number
 };
 
