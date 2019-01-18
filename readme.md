@@ -17,7 +17,7 @@ Install MeteorJS: https://www.meteor.com/install
 
 Clone repository:
 
-    $ git clone https://github.org/ashenwolf/test-cinema
+    $ git clone https://github.com/ashenwolf/demo-cinema.git
 
 Enter app folder:
 
