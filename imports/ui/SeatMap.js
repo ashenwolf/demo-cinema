@@ -44,7 +44,7 @@ class SeatMap extends Component {
                 col={c}
                 disabled={this.props.disabled}
                 movieId={this.props.movieId}
-                scheduleId={this.props.scheduleId}
+                showId={this.props.showId}
                 reservation={this.getReservedBy(r, c)}
               >
                 {c + 1}
@@ -61,7 +61,7 @@ class SeatMap extends Component {
 SeatMap.propTypes = {
   classes: PropTypes.object.isRequired,
   movieId: PropTypes.object,
-  scheduleId: PropTypes.object,
+  showId: PropTypes.object,
   reservations: PropTypes.array,
   rows: PropTypes.number,
   cols: PropTypes.number,

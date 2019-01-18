@@ -6,7 +6,7 @@ import { Meteor } from "meteor/meteor";
 import Button from "@material-ui/core/Button";
 import Tooltip from "@material-ui/core/Tooltip";
 
-import classnames from "classnames";
+import classNames from "classnames";
 
 const styles = () => ({
   seat: {
@@ -45,7 +45,7 @@ class Seat extends Component {
       Meteor.call(
         "movies.unbook",
         this.props.movieId,
-        this.props.scheduleId,
+        this.props.showId,
         this.props.row,
         this.props.col
       );
@@ -53,7 +53,7 @@ class Seat extends Component {
       Meteor.call(
         "movies.book",
         this.props.movieId,
-        this.props.scheduleId,
+        this.props.showId,
         this.props.row,
         this.props.col
       );
@@ -61,10 +61,6 @@ class Seat extends Component {
   }
 
   render() {
-    // const taskClassName = classnames({
-    //   checked: this.props.task.checked,
-    //   private: this.props.task.private
-    // });
     const { classes } = this.props;
 
     return (
@@ -79,7 +75,7 @@ class Seat extends Component {
               : "outlined"
           }
           color={this.reservationColor()}
-          className={classnames(
+          className={classNames(
             classes.seat,
             this.props.disabled ? classes.disabled : {}
           )}
@@ -98,7 +94,7 @@ Seat.propTypes = {
   row: PropTypes.any,
   col: PropTypes.any,
   movieId: PropTypes.object,
-  scheduleId: PropTypes.object,
+  showId: PropTypes.object,
   reservation: PropTypes.object,
   disabled: PropTypes.bool
 };
