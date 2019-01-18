@@ -61,6 +61,7 @@ class App extends Component {
 
   resetDb() {
     this.setState({ selectedSessionId: null });
+    Meteor.call("movies.reset");
     Meteor.call("sessions.reset");
   }
 
