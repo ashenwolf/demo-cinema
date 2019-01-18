@@ -8,12 +8,13 @@
     "visualize": "meteor --production --extra-packages bundle-visualizer"
   },
   "dependencies": {
-    "@babel/runtime": "^7.1.5",
+    "@babel/runtime": "^7.2.0",
     "@material-ui/core": "^3.9.0",
     "bcrypt": "^3.0.3",
     "classnames": "^2.2.6",
     "meteor-node-stubs": "^0.4.1",
     "moment": "^2.23.0",
+    "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "recompose": "^0.30.0"
