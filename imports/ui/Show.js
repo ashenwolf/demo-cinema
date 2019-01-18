@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import withStyles from "@material-ui/core/styles/withStyles";
+import classNames from "classnames";
+import moment from "moment";
 
+import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 
 import SeatMap from "./SeatMap.js";
 
-import classNames from "classnames";
-import moment from "moment";
-
 import styles from "../config/styles.js";
+import uiConfig from "../config/ui.js";
 
 class Show extends Component {
   constructor(props) {
@@ -49,8 +49,8 @@ class Show extends Component {
         disabled={moment(show.showTime).isBefore(this.state.currentTime)}
         movieId={this.props.movieId}
         showId={show._id}
-        rows={6}
-        cols={8}
+        rows={uiConfig.seats.rows}
+        cols={uiConfig.seats.cols}
         className={classes.centerText}
         reservations={show.reservations}
       />

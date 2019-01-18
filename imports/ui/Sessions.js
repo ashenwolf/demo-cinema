@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import withStyles from "@material-ui/core/styles/withStyles";
+import classNames from "classnames";
+import moment from "moment";
 
 import { Meteor } from "meteor/meteor";
 import { EJSON } from "meteor/ejson";
 
+import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-
-import classNames from "classnames";
-import moment from "moment";
 
 import styles from "../config/styles.js";
 
