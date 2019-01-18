@@ -7,6 +7,10 @@
 | Source Control          | https://github.com/ashenwolf/demo-cinema.git |
 | Demo Deployment (dokku) | https://grammarly-cinema.binky.okami.tech    |
 
+## Prerequisites
+
+- MongoDB >= 3.6.1
+
 ## Installation
 
 Install MeteorJS: https://www.meteor.com/install
