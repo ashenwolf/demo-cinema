@@ -1,5 +1,5 @@
 import assert from "assert";
-import "../imports/api/tasks.tests.js";
+import "../imports/api/movies.tests.js";
 
 describe("grammarly-movie", function() {
   it("package.json has correct name", async function() {
