@@ -119,14 +119,20 @@ class App extends Component {
                 />
               </Grid>
               <Grid item xs={12}>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  className={classNames(classes.button, classes.block)}
-                  onClick={this.resetDb.bind(this)}
-                >
-                  Reset ShowTime Database
-                </Button>
+                {(() => {
+                  return Meteor.userId() ? (
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      className={classNames(classes.button, classes.block)}
+                      onClick={this.resetDb.bind(this)}
+                    >
+                      Reset ShowTime Database
+                    </Button>
+                  ) : (
+                    ""
+                  );
+                })()}
               </Grid>
             </Grid>
           </Paper>
